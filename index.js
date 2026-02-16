@@ -13,11 +13,94 @@ async function fetchGames() {
     }
     const result = await response.json();
     allGames = result.data;
+    console.log(allGames);
   } catch (error) {
-    displayMessage("Error: " + error);
+    displayMessage(error);
+  } finally {
+    stopLoading();
+    displayGames();
   }
 }
+async function displayGames() {
+  const container = document.querySelector(".games-container");
+  stopLoading();
+  container.innerHTML = "";
+
+  allGames.forEach((game) => {
+    const gameCard = document.createElement("div");
+    gameCard.classList.add("game-card");
+
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("image-container");
+
+    const image = document.createElement("img");
+
+    const sale = document.createElement("div");
+    sale.classList.add("sale");
+    sale.innerHTML = "Sale";
+
+    const title = document.createElement("h2");
+    title.classList.add("title");
+
+    const categories = document.createElement("p");
+    categories.classList.add("categories");
+
+    const priceContainer = document.createElement("div");
+    priceContainer.classList.add("price-container");
+
+    const normalPrice = document.createElement("p");
+    normalPrice.classList.add("normal-price");
+
+    const salePrice = document.createElement("p");
+    salePrice.classList.add("sale-price");
+
+    const addToCartBtn = document.createElement("button");
+    addToCartBtn.classList.add("add-to-cart-btn");
+    addToCartBtn.setAttribute(`aria-label`, `Add to cart button`);
+
+    const buttonIcon = document.createElement("i");
+    buttonIcon.classList.add("fa-sharp", "fa-regular", "fa-cart-shopping");
+
+    image.src = game.image.url;
+    title.textContent = game.title;
+    categories.textContent = game.genre;
+    normalPrice.textContent = `$${game.price}`;
+    salePrice.textContent = `$${game.discountedPrice}`;
+
+    container.appendChild(gameCard);
+    gameCard.appendChild(imageContainer);
+    gameCard.appendChild(title);
+    gameCard.appendChild(categories);
+    gameCard.appendChild(priceContainer);
+    if (game.onSale) {
+      imageContainer.appendChild(image);
+      imageContainer.appendChild(sale);
+      priceContainer.appendChild(normalPrice);
+      normalPrice.classList.add("line-through");
+      priceContainer.appendChild(salePrice);
+    } else {
+      imageContainer.appendChild(image);
+      priceContainer.appendChild(normalPrice);
+    }
+    gameCard.appendChild(addToCartBtn);
+    addToCartBtn.appendChild(buttonIcon);
+  });
+}
+
 fetchGames();
+function loading() {
+  const container = document.querySelector(
+    ".games-container .loading-container",
+  );
+  container.classList.remove("hidden");
+}
+
+function stopLoading() {
+  const container = document.querySelector(
+    ".games-container .loading-container",
+  );
+  container.classList.add("hidden");
+}
 
 // Display and remove success or error message
 function displayMessage(text, type) {
@@ -35,3 +118,4 @@ function displayMessage(text, type) {
     messageContainer.classList.add("hidden");
   }, 4000);
 }
+loading();
