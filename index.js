@@ -4,6 +4,7 @@ const API_PATH = "gamehub";
 const url = API_BASE + API_PATH;
 
 let allGames = [];
+let cart = [];
 
 // API FETCH
 async function fetchGames() {
