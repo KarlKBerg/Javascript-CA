@@ -32,6 +32,48 @@ header {
 #logo-divide {
   color: yellow;
 }
+/* Cart */
+.cart-container {
+  cursor: pointer;
+}
+.cart {
+  width: 40rem;
+  z-index: 10;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgb(75, 75, 75);
+  padding: 1.2rem;
+  min-height: 20rem;
+}
+.cart-message {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 1.2rem;
+}
+.checkout-btn {
+  display: flex;
+  justify-content: center;
+  background: green;
+  padding: 0.8rem 0;
+  text-align: center;
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  margin: 1.2rem 0;
+}
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.4rem;
+  padding-bottom: 1.2rem;
+}
+.cart-header i {
+  color: white;
+}
+.cart-header button {
+  cursor: pointer;
+}
+
 /* MAIN *
 /* Search */
 .search-container {
