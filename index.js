@@ -6,6 +6,20 @@ const url = API_BASE + API_PATH;
 let allGames = [];
 let cart = [];
 
+// Open cart
+const cartIcon = document.querySelector(".cart-container i");
+const cartContainer = document.querySelector(".cart");
+cartIcon.addEventListener("click", (event) => {
+  event.stopPropagation();
+  cartContainer.classList.toggle("hidden");
+});
+// Close cart by clicking outside
+document.addEventListener("click", (event) => {
+  if (!cartContainer.contains(event.target)) {
+    cartContainer.classList.add("hidden");
+  }
+});
+
 // API FETCH
 async function fetchGames() {
   try {
@@ -15,7 +29,6 @@ async function fetchGames() {
     }
     const result = await response.json();
     allGames = result.data;
-    console.log(allGames);
   } catch (error) {
     displayMessage(error);
   } finally {
