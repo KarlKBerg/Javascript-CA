@@ -129,6 +129,8 @@ header {
 .hidden {
   display: none;
 }
+
+/* LOADING ANIMATION */
 .loading-container {
   margin-top: 1.6rem;
   display: flex;
