@@ -130,7 +130,10 @@ header {
   display: none;
 }
 .loading-container {
-  margin: 0 auto;
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .loading-container p {
   text-align: center;
@@ -143,8 +146,6 @@ header {
   width: 90px;
   height: 90px;
   animation: spin 2s linear infinite;
-  display: flex;
-  justify-content: center;
 }
 
 @keyframes spin {
