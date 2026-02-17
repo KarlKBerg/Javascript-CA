@@ -128,9 +128,9 @@ document.querySelector("#search-input").addEventListener(`input`, (event) => {
   const searchTerm = event.target.value;
 
   const filteredGames = filterGames(searchTerm);
-  console.log("typing...", event.target.value);
 
   displayGames(filteredGames);
+  console.log(filterGames);
 });
 function filterGames(searchText) {
   let searchString = searchText.toLowerCase().trim();
