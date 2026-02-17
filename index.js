@@ -130,7 +130,6 @@ document.querySelector("#search-input").addEventListener(`input`, (event) => {
   const filteredGames = filterGames(searchTerm);
 
   displayGames(filteredGames);
-  console.log(filterGames);
 });
 function filterGames(searchText) {
   let searchString = searchText.toLowerCase().trim();
