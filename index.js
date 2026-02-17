@@ -6,9 +6,10 @@ const url = API_BASE + API_PATH;
 let allGames = [];
 let cart = [];
 
-// Open cart
+// Open and close cart
 const cartIcon = document.querySelector(".cart-container i");
 const cartContainer = document.querySelector(".cart");
+const closeBtn = document.querySelector(".cart-header button");
 cartIcon.addEventListener("click", (event) => {
   event.stopPropagation();
   cartContainer.classList.toggle("hidden");
@@ -18,6 +19,10 @@ document.addEventListener("click", (event) => {
   if (!cartContainer.contains(event.target)) {
     cartContainer.classList.add("hidden");
   }
+});
+// Close cart with close button
+closeBtn.addEventListener("click", () => {
+  cartContainer.classList.add("hidden");
 });
 
 // API FETCH
