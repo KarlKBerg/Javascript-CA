@@ -18,18 +18,17 @@ async function fetchGames() {
   } catch (error) {
     displayMessage(error);
   } finally {
-    stopLoading();
-    displayGames();
+    displayGames(allGames);
   }
 }
 
 // DISPLAY GAMES FROM API
-async function displayGames() {
+async function displayGames(gamesToDisplay) {
   const container = document.querySelector(".games-container");
   stopLoading();
   container.innerHTML = "";
 
-  allGames.forEach((game) => {
+  gamesToDisplay.forEach((game) => {
     const gameCard = document.createElement("div");
     gameCard.classList.add("game-card");
 
@@ -92,18 +91,18 @@ async function displayGames() {
 
 // LOADING SPINNER
 function loading() {
-  const container = document.querySelector(
-    ".games-container .loading-container",
-  );
+  const container = document.querySelector(".loading-container .loading");
+  const containerP = document.querySelector(".loading-container p");
   container.classList.remove("hidden");
+  containerP.classList.remove("hidden");
 }
 
 // STOP LOADING SPINER
 function stopLoading() {
-  const container = document.querySelector(
-    ".games-container .loading-container",
-  );
+  const container = document.querySelector(".loading-container .loading");
+  const containerP = document.querySelector(".loading-container p");
   container.classList.add("hidden");
+  containerP.classList.add("hidden");
 }
 
 // ERROR / SUCCESS MESSAGE
@@ -122,6 +121,34 @@ function displayMessage(text, type) {
   setTimeout(() => {
     messageContainer.classList.add("hidden");
   }, 4000);
+}
+
+// SEARCH
+document.querySelector("#search-input").addEventListener(`input`, (event) => {
+  const searchTerm = event.target.value;
+
+  const filteredGames = filterGames(searchTerm);
+  console.log("typing...", event.target.value);
+
+  displayGames(filteredGames);
+});
+function filterGames(searchText) {
+  let searchString = searchText.toLowerCase().trim();
+
+  if (!searchString) {
+    return allGames;
+  }
+
+  const filtered = allGames.filter((game) => {
+    const nameMatch = game.title.toLowerCase().includes(searchString);
+    const descriptionMatch = game.description
+      .toLowerCase()
+      .includes(searchString);
+    const genreMatch = game.genre.toLowerCase().includes(searchString);
+
+    return nameMatch || descriptionMatch || genreMatch;
+  });
+  return filtered;
 }
 
 fetchGames(); // Fetch games when site loads
