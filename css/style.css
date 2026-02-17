@@ -70,9 +70,7 @@ header {
   width: 20rem;
   border-radius: 0.8rem;
 }
-.game-card .img {
-  width: 90%;
-  height: 20rem;
+.game-card img {
   background-color: red;
   margin: 0 auto;
   z-index: 1;
