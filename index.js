@@ -5,6 +5,7 @@ const url = API_BASE + API_PATH;
 
 let allGames = [];
 
+// API FETCH
 async function fetchGames() {
   try {
     const response = await fetch(url);
@@ -21,6 +22,8 @@ async function fetchGames() {
     displayGames();
   }
 }
+
+// DISPLAY GAMES FROM API
 async function displayGames() {
   const container = document.querySelector(".games-container");
   stopLoading();
@@ -87,7 +90,7 @@ async function displayGames() {
   });
 }
 
-fetchGames();
+// LOADING SPINNER
 function loading() {
   const container = document.querySelector(
     ".games-container .loading-container",
@@ -95,6 +98,7 @@ function loading() {
   container.classList.remove("hidden");
 }
 
+// STOP LOADING SPINER
 function stopLoading() {
   const container = document.querySelector(
     ".games-container .loading-container",
@@ -102,6 +106,7 @@ function stopLoading() {
   container.classList.add("hidden");
 }
 
+// ERROR / SUCCESS MESSAGE
 // Display and remove success or error message
 function displayMessage(text, type) {
   const messageContainer = document.querySelector("main .message-container");
@@ -118,4 +123,7 @@ function displayMessage(text, type) {
     messageContainer.classList.add("hidden");
   }, 4000);
 }
-loading();
+
+fetchGames(); // Fetch games when site loads
+
+loading(); // Start loading spinner
