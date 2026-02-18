@@ -268,6 +268,14 @@ displayCartItems();
 // The 'arr' variable now holds the new filtered array.
 /* 
 TODAYS GOAL:
-- WORKING CART WITH LOCALSTORAGE
+- FOOTER (style)
 - PRODUCT PAGE
+*/
+
+/*
+GOALS:
+- Error handling
+- Categories search (buttons?)
+- Finish static pages (TOS, EULA, About, Contact)
+- 
 */
