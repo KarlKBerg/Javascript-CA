@@ -4,12 +4,14 @@ const API_PATH = "gamehub";
 const url = API_BASE + API_PATH;
 
 let allGames = [];
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Open and close cart
 const cartIcon = document.querySelector(".cart-container i");
 const cartContainer = document.querySelector(".cart");
 const closeBtn = document.querySelector(".cart-header button");
+
+// Open and close cart
+
 cartIcon.addEventListener("click", (event) => {
   event.stopPropagation();
   cartContainer.classList.toggle("hidden");
@@ -50,6 +52,7 @@ async function displayGames(gamesToDisplay) {
   gamesToDisplay.forEach((game) => {
     const gameCard = document.createElement("div");
     gameCard.classList.add("game-card");
+    gameCard.dataset.id = game.id;
 
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
@@ -106,6 +109,7 @@ async function displayGames(gamesToDisplay) {
     gameCard.appendChild(addToCartBtn);
     addToCartBtn.appendChild(buttonIcon);
   });
+  console.log(allGames);
 }
 
 // LOADING SPINNER
@@ -172,3 +176,98 @@ function filterGames(searchText) {
 fetchGames(); // Fetch games when site loads
 
 loading(); // Start loading spinner
+
+// ADD PRODUCT TO CART
+document
+  .querySelector(".games-container")
+  .addEventListener("click", (event) => {
+    if (event.target.closest(".add-to-cart-btn")) {
+      let game = event.target.closest(".game-card");
+      let gameId = game.dataset.id;
+      const gameToAdd = allGames.find(function (gameIdToFind) {
+        return gameIdToFind.id === gameId;
+      });
+      cart.push(gameToAdd);
+      saveCart();
+      displayCartItems();
+    }
+  });
+function addToCart() {
+  displayCartItems();
+}
+function displayCartItems() {
+  const itemsContainer = document.querySelector(".items-container");
+  itemsContainer.innerHTML = "";
+  cart.forEach((item) => {
+    const cartItemContainer = document.createElement("div");
+
+    const leftContainer = document.createElement("div");
+    leftContainer.classList.add("cart-left");
+    cartItemContainer.classList.add("cart-product");
+    cartItemContainer.dataset.id = item.id;
+
+    const productImage = document.createElement("img");
+    productImage.src = item.image.url;
+
+    const titleGenreDiv = document.createElement("div");
+    titleGenreDiv.classList.add("title-genre-container");
+
+    const cartTitle = document.createElement("h2");
+    cartTitle.classList.add("cart-item-title");
+    cartTitle.textContent = item.title;
+
+    const cartGenre = document.createElement("p");
+    cartGenre.classList.add("cart-item-genre");
+    cartGenre.textContent = item.genre;
+
+    const rightContainer = document.createElement("div");
+    rightContainer.classList.add("cart-right");
+
+    const removeIcon = document.createElement("i");
+    removeIcon.classList.add("fa-solid", "fa-trash");
+
+    const cartItemPrice = document.createElement("h2");
+    cartItemPrice.classList.add("cart-item-price");
+    if (item.onSale) {
+      cartItemPrice.textContent = item.discountedPrice;
+    } else {
+      cartItemPrice.textContent = `$${item.price}`;
+    }
+
+    itemsContainer.appendChild(cartItemContainer);
+    cartItemContainer.appendChild(leftContainer);
+    leftContainer.appendChild(productImage);
+    leftContainer.appendChild(titleGenreDiv);
+    titleGenreDiv.appendChild(cartTitle);
+    titleGenreDiv.appendChild(cartGenre);
+    cartItemContainer.appendChild(rightContainer);
+    rightContainer.appendChild(removeIcon);
+    rightContainer.appendChild(cartItemPrice);
+  });
+}
+// Delete cart item
+document
+  .querySelector(".items-container")
+  .addEventListener("click", (event) => {
+    if (event.target.closest(".fa-trash")) {
+      let game = event.target.closest(".cart-product");
+      let gameId = game.dataset.id;
+      cart = cart.filter((item) => item.id !== gameId);
+      saveCart();
+      displayCartItems();
+    }
+  });
+
+// Save cart array to localStorage
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+// Render cart from localStorage on page load
+displayCartItems();
+
+// The 'arr' variable now holds the new filtered array.
+/* 
+TODAYS GOAL:
+- WORKING CART WITH LOCALSTORAGE
+- PRODUCT PAGE
+*/
