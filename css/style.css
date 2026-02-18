@@ -73,6 +73,40 @@ header {
 .cart-header button {
   cursor: pointer;
 }
+.add-to-cart-btn {
+  cursor: pointer;
+}
+.add-to-cart-btn:hover {
+  background: rgb(0, 182, 0);
+}
+
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.cart-product {
+  display: flex;
+  padding: 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.4rem;
+}
+.cart-left {
+  display: flex;
+  gap: 1.2rem;
+}
+.cart-left img {
+  width: 10rem;
+}
+.title-genre-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title-genre-container p {
+  font-size: 1.8rem;
+}
 
 /* MAIN *
 /* Search */
