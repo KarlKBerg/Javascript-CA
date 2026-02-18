@@ -24,7 +24,12 @@ header {
   display: flex;
   gap: 3.2rem;
 }
-
+#main-nav li:hover {
+  color: yellow;
+}
+.cart-container i:hover {
+  color: yellow;
+}
 .logo {
   font-size: 3.2rem;
   font-weight: 700;
