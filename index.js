@@ -87,7 +87,8 @@ async function displayGames(gamesToDisplay) {
     buttonIcon.classList.add("fa-sharp", "fa-regular", "fa-cart-shopping");
 
     const productTag = document.createElement("a");
-    productTag.setAttribute(`href`, "product/index.html");
+    productTag.setAttribute(`href`, `product/index.html?id=${game.id}`);
+    productTag.classList.add("product-link");
 
     image.src = game.image.url;
     title.textContent = game.title;
@@ -95,12 +96,12 @@ async function displayGames(gamesToDisplay) {
     normalPrice.textContent = `$${game.price}`;
     salePrice.textContent = `$${game.discountedPrice}`;
 
-    container.appendChild(productTag);
-    productTag.appendChild(gameCard);
-    gameCard.appendChild(imageContainer);
-    gameCard.appendChild(title);
-    gameCard.appendChild(categories);
-    gameCard.appendChild(priceContainer);
+    container.appendChild(gameCard);
+    gameCard.appendChild(productTag);
+    productTag.appendChild(imageContainer);
+    productTag.appendChild(title);
+    productTag.appendChild(categories);
+    productTag.appendChild(priceContainer);
     if (game.onSale) {
       imageContainer.appendChild(image);
       imageContainer.appendChild(sale);
@@ -289,5 +290,6 @@ function isCartEmpty() {
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 // Render cart from localStorage on page load
 displayCartItems();
