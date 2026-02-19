@@ -278,8 +278,10 @@ footer {
   display: flex;
   gap: 10rem;
   justify-content: space-between;
-  padding: 8rem;
+  padding: 4rem;
   font-size: 1.8rem;
+  border-top: 1px solid white;
+  margin-top: 4rem;
 }
 #links ul,
 #legal ul,
