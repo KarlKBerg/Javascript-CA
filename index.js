@@ -110,7 +110,6 @@ async function displayGames(gamesToDisplay) {
     gameCard.appendChild(addToCartBtn);
     addToCartBtn.appendChild(buttonIcon);
   });
-  console.log(allGames);
 }
 
 // LOADING SPINNER
@@ -254,7 +253,9 @@ document
       let game = event.target.closest(".cart-product");
       let gameId = game.dataset.id;
       cart = cart.filter((item) => item.id !== gameId);
+      isCartEmpty();
       event.stopPropagation();
+
       saveCart();
       displayCartItems();
     }
@@ -266,6 +267,7 @@ function isCartEmpty() {
   const cartBtn = document.querySelector(".checkout-btn");
   if (cart.length === 0) {
     const container = document.querySelector(".items-container");
+    container.innerHTML = "";
     cartContainer.classList.add("hidden");
     cartBtn.classList.add("hidden");
 
