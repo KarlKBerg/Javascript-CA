@@ -273,6 +273,20 @@ header {
   }
 }
 
+/* PRODUCT PAGE */
+#product-info {
+  display: flex;
+}
+.title-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  flex: 1;
+}
+#product-info img {
+  flex: 1;
+}
+
 /* FOOTER */
 footer {
   display: flex;
