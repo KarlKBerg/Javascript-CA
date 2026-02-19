@@ -241,12 +241,13 @@ header {
 footer {
   display: flex;
   gap: 10rem;
-  justify-content: center;
+  justify-content: space-between;
   padding: 8rem;
   font-size: 1.8rem;
 }
 #links ul,
-#legal ul {
+#legal ul,
+#logo {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
@@ -255,4 +256,7 @@ footer {
 #links li:hover,
 #legal li:hover {
   color: yellow;
+}
+.footer-logo {
+  font-size: 4.8rem;
 }
