@@ -264,18 +264,3 @@ function saveCart() {
 }
 // Render cart from localStorage on page load
 displayCartItems();
-
-// The 'arr' variable now holds the new filtered array.
-/* 
-TODAYS GOAL:
-- FOOTER (style)
-- PRODUCT PAGE
-*/
-
-/*
-GOALS:
-- Error handling
-- Categories search (buttons?)
-- Finish static pages (TOS, EULA, About, Contact)
-- 
-*/
