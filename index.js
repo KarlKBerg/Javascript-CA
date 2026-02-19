@@ -86,13 +86,17 @@ async function displayGames(gamesToDisplay) {
     const buttonIcon = document.createElement("i");
     buttonIcon.classList.add("fa-sharp", "fa-regular", "fa-cart-shopping");
 
+    const productTag = document.createElement("a");
+    productTag.setAttribute(`href`, "product/index.html");
+
     image.src = game.image.url;
     title.textContent = game.title;
     categories.textContent = game.genre;
     normalPrice.textContent = `$${game.price}`;
     salePrice.textContent = `$${game.discountedPrice}`;
 
-    container.appendChild(gameCard);
+    container.appendChild(productTag);
+    productTag.appendChild(gameCard);
     gameCard.appendChild(imageContainer);
     gameCard.appendChild(title);
     gameCard.appendChild(categories);
