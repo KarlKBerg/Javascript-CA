@@ -237,3 +237,22 @@ header {
     transform: rotate(360deg);
   }
 }
+/* FOOTER */
+footer {
+  display: flex;
+  gap: 10rem;
+  justify-content: center;
+  padding: 8rem;
+  font-size: 1.8rem;
+}
+#links ul,
+#legal ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+}
+#links li:hover,
+#legal li:hover {
+  color: yellow;
+}
