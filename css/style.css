@@ -66,6 +66,10 @@ header {
   font-size: 1.8rem;
   margin: 1.2rem 0;
 }
+.checkout-btn:hover {
+  cursor: pointer;
+  background-color: rgb(0, 184, 0);
+}
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -75,14 +79,13 @@ header {
 .cart-header i {
   color: white;
 }
-.cart-header button {
+.cart-header i:hover {
   cursor: pointer;
-}
-.add-to-cart-btn {
-  cursor: pointer;
+  color: rgb(182, 182, 182);
 }
 .add-to-cart-btn:hover {
   background: rgb(0, 182, 0);
+  cursor: pointer;
 }
 
 .items-container {
@@ -104,6 +107,18 @@ header {
 .cart-left img {
   width: 10rem;
 }
+.cart-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+.cart-right i {
+  color: rgb(193, 1, 1);
+}
+.cart-right i:hover {
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+}
 .title-genre-container {
   display: flex;
   flex-direction: column;
@@ -111,6 +126,26 @@ header {
 }
 .title-genre-container p {
   font-size: 1.8rem;
+}
+.cart-price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin: 1.6rem 0;
+}
+.price-overview {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.8rem;
+}
+.price-heading,
+.price {
+  font-weight: 500;
+}
+.price-heading-bold,
+.price-total {
+  font-weight: 700;
+  font-size: 2.4rem;
 }
 
 /* MAIN *
@@ -237,6 +272,7 @@ header {
     transform: rotate(360deg);
   }
 }
+
 /* FOOTER */
 footer {
   display: flex;
