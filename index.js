@@ -13,6 +13,7 @@ const closeBtn = document.querySelector(".cart-header button");
 // Open and close cart
 
 cartIcon.addEventListener("click", (event) => {
+  isCartEmpty();
   event.stopPropagation();
   cartContainer.classList.toggle("hidden");
 });
@@ -253,11 +254,31 @@ document
       let game = event.target.closest(".cart-product");
       let gameId = game.dataset.id;
       cart = cart.filter((item) => item.id !== gameId);
+      event.stopPropagation();
       saveCart();
       displayCartItems();
     }
   });
 
+// Check if cart is empty and display empty text
+function isCartEmpty() {
+  const cartContainer = document.querySelector(".cart-price-container");
+  const cartBtn = document.querySelector(".checkout-btn");
+  if (cart.length === 0) {
+    const container = document.querySelector(".items-container");
+    cartContainer.classList.add("hidden");
+    cartBtn.classList.add("hidden");
+
+    const cartMessage = document.createElement("h2");
+    cartMessage.classList.add("cart-message");
+    cartMessage.textContent = "Cart is empty!";
+
+    container.appendChild(cartMessage);
+  } else {
+    cartContainer.classList.remove("hidden");
+    cartBtn.classList.remove("hidden");
+  }
+}
 // Save cart array to localStorage
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
