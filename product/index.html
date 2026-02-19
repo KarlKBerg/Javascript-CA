@@ -11,8 +11,8 @@
       src="https://kit.fontawesome.com/b5a5784c82.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <title>GameHub | Product</title>
   </head>
   <body>
@@ -45,7 +45,57 @@
     <!-- ==== END HEADER ==== -->
 
     <!-- ==== MAIN ==== -->
-    <main id="main"></main>
+    <main id="main">
+      <!-- Cart content -->
+      <div class="cart hidden">
+        <div class="cart-header">
+          <h2 class="cart-title">Cart</h2>
+          <button aria-label="Close cart"><i class="fa-solid fa-x"></i></button>
+        </div>
+        <hr />
+        <div class="items-container">
+          <h2 class="cart-message">Cart is empty!</h2>
+          <!-- Dynamically loaded with JS -->
+        </div>
+        <div class="cart-price-container">
+          <div class="price-overview">
+            <h3 class="price-heading">Subtotal:</h3>
+            <h3 class="price">$0</h3>
+          </div>
+          <div class="price-overview">
+            <h3 class="price-heading">Tax:</h3>
+            <h3 class="price">$0</h3>
+          </div>
+          <hr />
+          <div class="price-overview">
+            <h3 class="price-heading-bold">Total:</h3>
+            <h3 class="price-total">$0</h3>
+          </div>
+        </div>
+        <a class="checkout-btn">Checkout</a>
+      </div>
+      <!-- Error/Success message -->
+      <div class="message-container hidden"></div>
+      <section id="product-info">
+        <img src="" alt="" />
+        <div class="product-info">
+          <div class="title-description">
+            <h3 class="title">Testing</h3>
+            <p class="description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Repudiandae quod delectus dolorem commodi vitae quibusdam, neque
+              veritatis nostrum. Dolor aut consectetur sed soluta iste. Sapiente
+              dolor vitae repudiandae voluptatem sequi!
+            </p>
+            <p class="categories">Sports</p>
+            <h3 class="price">$29.99</h3>
+          </div>
+          <button class="add-to-cart-btn">
+            <i class="fa-sharp fa-regular fa-cart-shopping"></i>
+          </button>
+        </div>
+      </section>
+    </main>
     <!-- ==== END MAIN ==== -->
     <!-- ==== FOOTER ==== -->
     <footer>
