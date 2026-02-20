@@ -1,6 +1,7 @@
 `use strict`;
 export {
   cart,
+  calculateCart,
   addToCart,
   displayCartItems,
   deleteCartItem,
@@ -9,12 +10,38 @@ export {
 };
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+function calculateCart() {
+  let subtotal = 0;
+  cart.forEach((game) => {
+    let priceToUse = game.onSale ? game.discountedPrice : game.price;
+    subtotal += Number(priceToUse);
+  });
+  subtotal = Number(subtotal.toFixed(2));
+  let tax = subtotal * 0.25;
+  tax = parseFloat(tax.toFixed(2));
+  const total = subtotal + tax;
+  const formattedTotal = parseFloat(total.toFixed(2));
+  displayCartPrices(subtotal, tax, formattedTotal);
+}
+
+function displayCartPrices(sub, tax, total) {
+  const subtotalPrice = document.querySelector("#subtotal");
+  const taxPrice = document.querySelector("#tax");
+  const totalPrice = document.querySelector("#total");
+  if (!subtotalPrice || !taxPrice || !totalPrice) return;
+  subtotalPrice.textContent = `$${sub.toFixed(2)}`;
+  taxPrice.textContent = `$${tax}`;
+  totalPrice.textContent = `$${total}`;
+}
+
 function addToCart() {
   displayCartItems();
+  calculateCart();
 }
 
 function displayCartItems() {
   const itemsContainer = document.querySelector(".items-container");
+  if (!itemsContainer) return;
   itemsContainer.innerHTML = "";
   cart.forEach((item) => {
     const cartItemContainer = document.createElement("div");
@@ -64,14 +91,16 @@ function displayCartItems() {
   });
 }
 
-function deleteCartItem() {
-  let game = event.target.closest(".cart-product");
-  let gameId = game.dataset.id;
+function deleteCartItem(event) {
+  const game = event.target.closest(".cart-product");
+  if (!game) return;
+  const gameId = game.dataset.id;
   cart = cart.filter((item) => item.id !== gameId);
   isCartEmpty();
 
   saveCart();
   displayCartItems();
+  calculateCart();
 }
 
 // Check if cart is empty and display empty text
