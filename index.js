@@ -2,6 +2,7 @@
 import {
   cart,
   addToCart,
+  calculateCart,
   displayCartItems,
   deleteCartItem,
   isCartEmpty,
@@ -199,9 +200,14 @@ document
       const gameToAdd = allGames.find(function (gameIdToFind) {
         return gameIdToFind.id === gameId;
       });
+      let price = gameToAdd.price;
+      if (gameToAdd.onSale) {
+        price = gameToAdd.discountedPrice;
+      }
       cart.push(gameToAdd);
       saveCart();
       displayCartItems();
+      calculateCart();
     }
   });
 
@@ -211,9 +217,10 @@ document
   .addEventListener("click", (event) => {
     if (event.target.closest(".fa-trash")) {
       event.stopPropagation();
-      deleteCartItem();
+      deleteCartItem(event);
     }
   });
 
 // Render cart from localStorage on page load
 displayCartItems();
+calculateCart();
