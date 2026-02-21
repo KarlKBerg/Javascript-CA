@@ -122,6 +122,7 @@ async function displayGames(gamesToDisplay) {
     }
     gameCard.appendChild(addToCartBtn);
     addToCartBtn.appendChild(buttonIcon);
+    console.log(allGames);
   });
 }
 
