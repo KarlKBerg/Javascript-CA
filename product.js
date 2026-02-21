@@ -7,6 +7,7 @@ import {
   deleteCartItem,
   isCartEmpty,
   saveCart,
+  calculateCart,
 } from "./cart.js";
 const API_BASE = "https://v2.api.noroff.dev/";
 const API_PATH = "gamehub";
@@ -16,7 +17,6 @@ const cartContainer = document.querySelector(".cart");
 const closeBtn = document.querySelector(".cart-header button");
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-console.log(params, id);
 
 // Fetch product
 
@@ -43,9 +43,21 @@ function displayProduct(data) {
         <h3 class="title">${data.title}</h3>
         <p class="description">${data.description}</p>
         <p class="categories">${data.genre}</p>
-        <h3 class="price">$${data.onSale ? `${data.discountedPrice}` : `$${data.price}`}</h3>
+        <h3 class="price">${data.onSale ? `$${data.discountedPrice}` : `$${data.price}`}</h3>
+        <button class="add-to-cart-btn">
+            <i class="fa-sharp fa-regular fa-cart-shopping"></i>
+          </button>
     </div>
     `;
+
+  const button = container.querySelector(".add-to-cart-btn");
+
+  button.addEventListener("click", () => {
+    cart.push(data);
+    saveCart();
+    displayCartItems();
+    calculateCart();
+  });
 }
 cartIcon.addEventListener("click", (event) => {
   isCartEmpty();
@@ -102,4 +114,16 @@ if (!id) {
   loading();
   fetchProduct(id);
 }
+
+document
+  .querySelector(".items-container")
+  .addEventListener("click", (event) => {
+    if (event.target.closest(".fa-trash")) {
+      event.stopPropagation();
+      deleteCartItem(event);
+      calculateCart();
+    }
+  });
+
 displayCartItems();
+calculateCart();
