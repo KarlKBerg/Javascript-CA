@@ -46,11 +46,16 @@
 
     <!-- ==== MAIN ==== -->
     <main id="main">
+      <div class="loading-container">
+        <div class="loading"></div>
+        <p>Loading</p>
+      </div>
       <!-- Cart content -->
       <div class="cart hidden">
         <div class="cart-header">
           <h2 class="cart-title">Cart</h2>
-          <button aria-label="Close cart"><i class="fa-solid fa-x"></i></button>
+          <button aria-label="Close cart"><i class="fa-solid fa-x"></i></button
+          >3
         </div>
         <hr />
         <div class="items-container">
@@ -60,16 +65,16 @@
         <div class="cart-price-container">
           <div class="price-overview">
             <h3 class="price-heading">Subtotal:</h3>
-            <h3 class="price">$0</h3>
+            <h3 class="price" id="subtotal">$0</h3>
           </div>
           <div class="price-overview">
             <h3 class="price-heading">Tax:</h3>
-            <h3 class="price">$0</h3>
+            <h3 class="price" id="tax">$0</h3>
           </div>
           <hr />
           <div class="price-overview">
             <h3 class="price-heading-bold">Total:</h3>
-            <h3 class="price-total">$0</h3>
+            <h3 class="price-total" id="total">$0</h3>
           </div>
         </div>
         <a class="checkout-btn">Checkout</a>
@@ -78,22 +83,7 @@
       <div class="message-container hidden"></div>
       <section id="product-info">
         <img src="" alt="" />
-        <div class="product-info">
-          <div class="title-description">
-            <h3 class="title">Testing</h3>
-            <p class="description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Repudiandae quod delectus dolorem commodi vitae quibusdam, neque
-              veritatis nostrum. Dolor aut consectetur sed soluta iste. Sapiente
-              dolor vitae repudiandae voluptatem sequi!
-            </p>
-            <p class="categories">Sports</p>
-            <h3 class="price">$29.99</h3>
-          </div>
-          <button class="add-to-cart-btn">
-            <i class="fa-sharp fa-regular fa-cart-shopping"></i>
-          </button>
-        </div>
+        <div class="product-info"></div>
       </section>
     </main>
     <!-- ==== END MAIN ==== -->
