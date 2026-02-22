@@ -7,6 +7,7 @@ export {
   deleteCartItem,
   isCartEmpty,
   saveCart,
+  displayCartPrices,
 };
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -30,7 +31,7 @@ function displayCartPrices(sub, tax, total) {
   const totalPrice = document.querySelector("#total");
   if (!subtotalPrice || !taxPrice || !totalPrice) return;
   subtotalPrice.textContent = `$${sub.toFixed(2)}`;
-  taxPrice.textContent = `$${tax}`;
+  taxPrice.textContent = `$${tax.toFixed(2)}`;
   totalPrice.textContent = `$${total}`;
 }
 
@@ -90,19 +91,35 @@ function displayCartItems() {
     rightContainer.appendChild(cartItemPrice);
   });
 }
-
 function deleteCartItem(event) {
   const game = event.target.closest(".cart-product");
   if (!game) return;
   const gameId = game.dataset.id;
   cart = cart.filter((item) => item.id !== gameId);
   isCartEmpty();
-
+  displayMessage(`The item was removed`, "success");
   saveCart();
   displayCartItems();
   calculateCart();
 }
-
+// ERROR / SUCCESS MESSAGE
+// Display and remove success or error message
+function displayMessage(text, type) {
+  const messageContainer = document.querySelector("main .message-container");
+  messageContainer.innerHTML = "";
+  messageContainer.classList.remove("hidden");
+  if (type === "success") {
+    messageContainer.classList.add("success");
+  } else {
+    messageContainer.classList.add("error");
+  }
+  const message = document.createElement("h3");
+  message.textContent = text;
+  messageContainer.appendChild(message);
+  setTimeout(() => {
+    messageContainer.classList.add("hidden");
+  }, 4000);
+}
 // Check if cart is empty and display empty text
 function isCartEmpty() {
   const cartContainer = document.querySelector(".cart-price-container");
