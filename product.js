@@ -31,7 +31,7 @@ async function fetchProduct(id) {
     stopLoading();
     displayProduct(result.data);
   } catch (error) {
-    displayMessage(error);
+    displayMessage(error, "error");
   }
 }
 
@@ -95,6 +95,7 @@ function stopLoading() {
 // Display and remove success or error message
 function displayMessage(text, type) {
   const messageContainer = document.querySelector("main .message-container");
+  messageContainer.innerHTML = "";
   messageContainer.classList.remove("hidden");
   if (type === "success") {
     messageContainer.classList.add("success");
@@ -109,7 +110,7 @@ function displayMessage(text, type) {
   }, 4000);
 }
 if (!id) {
-  displayMessage("No id found");
+  displayMessage("No id found", "error");
 } else {
   loading();
   fetchProduct(id);
