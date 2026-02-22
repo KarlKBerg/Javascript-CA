@@ -214,6 +214,9 @@ document
       displayCartItems();
       calculateCart();
       displayMessage(`${gameToAdd.title} was added to the cart`, "success");
+      isCartEmpty();
+      event.stopPropagation();
+      cartContainer.classList.toggle("hidden");
     }
   });
 
