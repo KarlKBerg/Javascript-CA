@@ -6,6 +6,7 @@ import {
   cart,
   calculateCart,
   saveCart,
+  deleteCartItem,
 } from "./cart.js";
 const cartIcon = document.querySelector(".cart-container i");
 const cartContainer = document.querySelector(".cart");
@@ -149,6 +150,17 @@ function displayCartPrices(sub, tax, total) {
 document.querySelector(".purchase-btn").addEventListener("click", () => {
   cart.length = 0;
   saveCart();
+});
+// Delete item
+document.querySelector(".checkout-items").addEventListener("click", (event) => {
+  if (event.target.closest(".fa-trash")) {
+    event.stopPropagation();
+    deleteCartItem(event);
+    displayCartItems();
+    displayCartItemsPage();
+    calculateCart();
+    calculateCartPage();
+  }
 });
 displayCartItems();
 displayCartItemsPage();
