@@ -122,7 +122,6 @@ async function displayGames(gamesToDisplay) {
     }
     gameCard.appendChild(addToCartBtn);
     addToCartBtn.appendChild(buttonIcon);
-    console.log(allGames);
   });
 }
 
@@ -146,6 +145,7 @@ function stopLoading() {
 // Display and remove success or error message
 function displayMessage(text, type) {
   const messageContainer = document.querySelector("main .message-container");
+  messageContainer.innerHTML = "";
   messageContainer.classList.remove("hidden");
   if (type === "success") {
     messageContainer.classList.add("success");
@@ -161,6 +161,10 @@ function displayMessage(text, type) {
 }
 
 // SEARCH
+let searchInputContainer = document.querySelector("#search-input");
+if (!searchInputContainer) {
+} else {
+}
 document.querySelector("#search-input").addEventListener(`input`, (event) => {
   const searchTerm = event.target.value;
 
@@ -209,6 +213,7 @@ document
       saveCart();
       displayCartItems();
       calculateCart();
+      displayMessage(`${gameToAdd.title} was added to the cart`, "success");
     }
   });
 
@@ -221,7 +226,6 @@ document
       deleteCartItem(event);
     }
   });
-
 // Render cart from localStorage on page load
 displayCartItems();
 calculateCart();
