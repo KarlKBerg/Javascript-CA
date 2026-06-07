@@ -34,7 +34,14 @@ async function fetchProduct(id) {
     displayMessage(error, "error");
   }
 }
-
+function openCloseMenu() {
+  const menu = document.querySelector(".fa-bars");
+  menu.addEventListener("click", () => {
+    const button = document.querySelector(".sec-nav-container");
+    button.classList.toggle("hidden");
+  });
+}
+openCloseMenu();
 function displayProduct(data) {
   const container = document.querySelector("#product-info");
   container.innerHTML = `
