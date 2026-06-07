@@ -351,6 +351,9 @@ footer {
 .right-header i {
   display: none;
 }
+.cart-container i {
+  display: block;
+}
 /*
 @media screen and (max-width: 330px) {
   .search-container input {
@@ -379,6 +382,9 @@ footer {
   }
   footer {
     gap: 2rem;
+  }
+  .cart {
+    width: 100%;
   }
 }
 
