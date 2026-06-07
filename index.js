@@ -209,14 +209,19 @@ document
       if (gameToAdd.onSale) {
         price = gameToAdd.discountedPrice;
       }
-      cart.push(gameToAdd);
-      saveCart();
-      displayCartItems();
-      calculateCart();
-      displayMessage(`${gameToAdd.title} was added to the cart`, "success");
-      isCartEmpty();
-      event.stopPropagation();
-      cartContainer.classList.toggle("hidden");
+      const existingProduct = cart.find((item) => item.id === gameId);
+      if (existingProduct) {
+        displayMessage("Product already in cart", "error");
+      } else {
+        cart.push(gameToAdd);
+        saveCart();
+        displayCartItems();
+        calculateCart();
+        displayMessage(`${gameToAdd.title} was added to the cart`, "success");
+        isCartEmpty();
+        event.stopPropagation();
+        cartContainer.classList.toggle("hidden");
+      }
     }
   });
 
