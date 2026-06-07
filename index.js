@@ -224,7 +224,7 @@ document
       }
     }
   });
-export function openCloseMenu() {
+function openCloseMenu() {
   const menu = document.querySelector(".fa-bars");
   menu.addEventListener("click", () => {
     const button = document.querySelector(".sec-nav-container");
