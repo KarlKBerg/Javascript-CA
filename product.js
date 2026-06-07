@@ -53,10 +53,15 @@ function displayProduct(data) {
   const button = container.querySelector(".add-to-cart-btn");
 
   button.addEventListener("click", () => {
-    cart.push(data);
-    saveCart();
-    displayCartItems();
-    calculateCart();
+    const existingProduct = cart.find((item) => item.id === data.id);
+    if (existingProduct) {
+      displayMessage("Product already in cart", "error");
+    } else {
+      cart.push(data);
+      saveCart();
+      displayCartItems();
+      calculateCart();
+    }
   });
 }
 cartIcon.addEventListener("click", (event) => {
