@@ -13,6 +13,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 4rem 0;
+  width: 100%;
 }
 .right-header {
   display: flex;
@@ -343,4 +344,49 @@ footer {
 }
 .footer-logo {
   font-size: 4.8rem;
+}
+.right-header i {
+  display: none;
+}
+/*
+@media screen and (max-width: 330px) {
+  .search-container input {
+    min-width: 90%;
+  }
+  .game-card {
+    width: 90%;
+  }
+  nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .game-card {
+    width: 20rem;
+  }
+}
+*/
+@media screen and (max-width: 840px) {
+  .right-header nav {
+    display: none;
+  }
+  .right-header i {
+    display: block;
+  }
+  footer {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .game-card {
+    width: 100%;
+  }
+  .search-container input {
+    min-width: 90%;
+  }
+  footer {
+    flex-direction: column;
+  }
 }
