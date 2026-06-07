@@ -224,7 +224,14 @@ document
       }
     }
   });
-
+export function openCloseMenu() {
+  const menu = document.querySelector(".fa-bars");
+  menu.addEventListener("click", () => {
+    const button = document.querySelector(".sec-nav-container");
+    button.classList.toggle("hidden");
+  });
+}
+openCloseMenu();
 // Delete cart item
 document
   .querySelector(".items-container")
