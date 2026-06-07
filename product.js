@@ -61,7 +61,6 @@ function displayProduct(data) {
       saveCart();
       displayCartItems();
       calculateCart();
-      console.log(cart);
     }
   });
 }
